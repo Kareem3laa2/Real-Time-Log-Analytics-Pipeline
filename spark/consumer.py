@@ -52,6 +52,14 @@ parsed_df = logs_df \
     .withColumn("timestamp", to_timestamp("timestamp_str", "dd/MMM/yyyy:HH:mm:ss Z")) \
     .drop("timestamp_str")
 
+# Archive the Silver Layer in Parquet format in HDFS
+parsed_df.writeStream \
+    .format("parquet") \
+    .option("path", "hdfs://namenode:8020/data/silver/logs/") \
+    .option("checkpointLocation", "/tmp/silver_checkpoint/") \
+    .outputMode("append") \
+    .start()
+
 # Write parsed data to PostgreSQL (Gold Layer)
 parsed_df.writeStream \
     .foreachBatch(write_to_postgres) \
