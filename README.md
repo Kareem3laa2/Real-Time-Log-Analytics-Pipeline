@@ -107,3 +107,8 @@ docker exec -it stream-spark-master spark-submit --packages org.apache.spark:spa
 
 * **Grafana UI:** http://localhost:3000/ *Username/Password:admin*
 * **Kafka UI:** http://localhost:8080/
+
+---
+
+### ⚠️ Airflow DAG will be Added Shortly and It'll be Used to Vaccum the Data Stored in PostgreSQL Database Every Week
+*If you still see the airflow warning message so it still hasn't been updated*
